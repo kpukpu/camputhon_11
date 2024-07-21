@@ -5,7 +5,7 @@ export const apiGet = async (type, arg1) => {
         let response;
         switch (type) {
             case "userInfo":
-                response = await axiosInstance.get(`/mypage/${arg1}`);
+                response = await axiosInstance.get(`mypage/${arg1}`);
         }
 
         return response.data;

@@ -28,7 +28,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
     const getTierImage = (tier) => {
         switch (tier) {
             case 'bronze':
-                return bronzeTierImage;
+                return 'sipal';
             case 'silver':
                 return silverTierImage;
             case 'gold':
