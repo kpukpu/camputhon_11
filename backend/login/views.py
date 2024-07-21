@@ -164,4 +164,3 @@ class Banner_list(generics.ListAPIView): # 배너 리스트
 
 
 
-    
