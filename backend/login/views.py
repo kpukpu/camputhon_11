@@ -14,6 +14,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .serializers import *
 
+
 @csrf_exempt
 def google_login(request):
     if request.method == 'POST':
@@ -84,3 +85,9 @@ class Update_Title(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@csrf_exempt
+def mypage(self, request, format=None):
+        users = GoogleUser.objects.all()
+        serializer = GoogleUserSerializer(users, many=True)
+        return Response(serializer.data)
