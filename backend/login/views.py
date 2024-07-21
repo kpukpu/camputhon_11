@@ -6,11 +6,10 @@ from django.contrib.auth.models import User
 from .models import GoogleUser
 import json
 from rest_framework import generics
-from rest_framework.views import APIView
-from .serializers import *
+from .serializers import mypage_info
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
-from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 @csrf_exempt
 def google_login(request):
@@ -63,3 +62,18 @@ class Update_Banner_Title(APIView): # user DB의 google_id에 해당하는 이�
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@csrf_exempt
+def mypage(request):
+    status = get_object_or_404(GoogleUser)
+    # Book 객체 생성
+    user_status = Book(
+        book_number=new_book_number,
+        book_name=book_name,
+        publisher=publisher,
+        availability=availability,
+        author=author,
+        publication_date=publication_date,
+    )
+
+    return JsonResponse({'message': 'Book added successfully!'}, status=201)
