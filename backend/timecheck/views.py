@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import Task, TaskTime
+from .models import TaskTime
 import time
 from rest_framework.decorators import api_view
 
@@ -13,7 +13,7 @@ def start_task(request):
 
 def EndTime(request):
     end_time = time.time()
-    task = get_object_or_404(Task, id=task_id)
+    task = get_object_or_404(TaskTime, id=task)
     start_times = task.times.values_list('start_time', flat=True)
     s_time = TaskTime(
         total_time = end_time - start_times
