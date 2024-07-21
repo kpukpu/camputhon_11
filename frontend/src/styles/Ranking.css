@@ -1,0 +1,58 @@
+/* src/Ranking.css */
+.ranking-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px; /* 주간 순위 글자를 조금 내려줍니다 */
+}
+
+h1 {
+    margin-bottom: 20px; /* 주간 순위 글자와 표 사이에 여백 추가 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd; /* 세로 선 대신 가로 선만 사용 */
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.my-ranking {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    display: inline-block;
+    background-color: #f9f9f9;
+}
+
+.my-ranking h2 {
+    margin-bottom: 10px;
+}
+
+.my-ranking-item {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 10px;
+    color: #81bef7;
+    border-radius: 5px;
+    gap: 20px; /* 항목 간의 간격을 띄워줌 */
+}
+
+.rank, .nickname, .score {
+    flex: 1;
+    text-align: center;
+}

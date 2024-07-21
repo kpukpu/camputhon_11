@@ -129,9 +129,20 @@ const TaskEditing = () => {
         setCurrentAssignment(null);
     };
 
+    const handleAddAssignment = () => {
+        const newAssignment = {
+            id: assignments.length + 1,
+            title: '새 과제',
+            dueDate: '2024-12-31T23:59',
+            completed: false
+        };
+        setAssignments([...assignments, newAssignment]);
+    };
+
     return (
         <div className="assignment-list">
             <h2>과제 목록</h2>
+            <button onClick={handleAddAssignment} className="add-button">과제 추가</button>
             {Object.entries(groupedAssignments).map(([date, assignmentsOnDate]) => (
                 <div key={date}>
                     <h3>{date}</h3>
