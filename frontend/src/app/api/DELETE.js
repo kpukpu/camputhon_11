@@ -5,7 +5,7 @@ export const apiDelete = async (type, query) => {
         switch (type) {
             case 1: break;
         }
-        const response = await axiosInstance.delete(`/delete/${query}/`);
+        const response = await axiosInstance.delete(`/delete/${query}`);
         return response.data;
     } catch (error) {
         console.error("There was an error deleting the book!", error);

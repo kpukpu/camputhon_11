@@ -7,6 +7,10 @@ export const apiPost = async (type, postThing) => {
             case "updateUserBanner":
                 response = await axiosInstance.post(`/update_banner/`, postThing);
                 break;
+            case "updateUserProfile":
+                response = await axiosInstance.post('/update_/', postThing);
+                break;
+
         }
         return response.data;
     }

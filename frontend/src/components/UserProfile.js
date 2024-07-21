@@ -10,6 +10,7 @@ import diamondTierImage from '../assets/tier/diamond.png';
 import rubyTierImage from '../assets/tier/ruby.png';
 import ProfilePictureModal from '../modal/ProfilePictureModal';
 import TitleModal from '../modal/TitleModal';
+import BannerModal from '../modal/BannerModal';
 import MyPoint from '../components/MyPoint';
 
 const UserProfile = ({ user, isEditing, setIsEditing }) => {
@@ -18,6 +19,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
 
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
     const [showTitleModal, setShowTitleModal] = useState(false);
+    const [showBannerModal, setShowBannerModal] = useState(false);
     const [tempProfileImage, setTempProfileImage] = useState(null);
     const [currentTitle, setCurrentTitle] = useState(title);
     const { silverPoint, goldPoint } = user;
@@ -28,7 +30,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
     const getTierImage = (tier) => {
         switch (tier) {
             case 'bronze':
-                return 'sipal';
+                return bronzeTierImage;
             case 'silver':
                 return silverTierImage;
             case 'gold':
@@ -44,12 +46,15 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
         }
     };
 
+
     const tierImage = getTierImage(nextTier);
 
     const toggleEditing = () => {
         setIsEditing(!isEditing);
         if (isEditing) {
             console.log('프로필 변경사항 저장');
+        } else {
+            console.log('프로필 편집 모드 활성화');
         }
     };
 
@@ -68,11 +73,15 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
         setTempProfileImage(URL.createObjectURL(file));
     };
 
+    const handleBannerSelect = (bannerUrl) => {
+        setTempProfileImage(bannerUrl);
+    };
+
     return (
         <div className="user-profile">
             <div className="profile-header">
                 <div className="profile-image">
-                    <img src={avatar || profileImage} alt="Profile"/>
+                    <img src={tempProfileImage || avatar || profileImage} alt="Profile"/>
                     {isEditing && (
                         <button className="edit-profile-picture-button"
                                 onClick={() => setShowProfilePictureModal(true)}>
@@ -108,7 +117,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                     </button>
                 </div>
                 <div className="tier-info">
-                    <span className="current-tier">현재 티어: {nextTier}</span>
+                    <span className="current-tier">현재 티어: {currentTier}</span>
                     <span className="next-tier">다음 티어: {nextTier}</span>
                 </div>
                 <div className="progress-bar-container">
@@ -120,14 +129,22 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                 <MyPoint silverPoint={silverPoint} goldPoint={goldPoint}/>
             </p>
             {showProfilePictureModal && (
-                <ProfilePictureModal onClose={() => setShowProfilePictureModal(false)}
-                                     onUpload={handleProfilePictureUpload}/>
+                <ProfilePictureModal
+                    onClose={() => setShowProfilePictureModal(false)}
+                    onUpload={handleProfilePictureUpload}
+                />
             )}
             {showTitleModal && (
                 <TitleModal
                     titles={titleList}
                     onClose={() => setShowTitleModal(false)}
                     onSelect={handleTitleSelect}
+                />
+            )}
+            {showBannerModal && (
+                <BannerModal
+                    onClose={() => setShowBannerModal(false)}
+                    onSelectBanner={handleBannerSelect}
                 />
             )}
         </div>
