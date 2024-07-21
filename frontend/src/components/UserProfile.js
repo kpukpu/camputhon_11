@@ -13,13 +13,13 @@ import TitleModal from '../modal/TitleModal';
 import MyPoint from '../components/MyPoint';
 
 const UserProfile = ({ user, isEditing, setIsEditing }) => {
-    const { nickname, topPercentage, tier, currentTier, nextTier, currentPoints, levelUpPoints, google_id } = user;
+    const { nickname, week_score, currentTier, nextTier, currentPoints, levelUpPoints, google_id, avatar, title } = user;
     const progressPercentage = (currentPoints / levelUpPoints) * 100;
 
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
     const [showTitleModal, setShowTitleModal] = useState(false);
     const [tempProfileImage, setTempProfileImage] = useState(null);
-    const [currentTitle, setCurrentTitle] = useState(user.title);
+    const [currentTitle, setCurrentTitle] = useState(title);
     const { silverPoint, goldPoint } = user;
 
     // 임시 칭호 리스트
@@ -44,7 +44,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
         }
     };
 
-    const tierImage = getTierImage(tier);
+    const tierImage = getTierImage(nextTier);
 
     const toggleEditing = () => {
         setIsEditing(!isEditing);
@@ -72,7 +72,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
         <div className="user-profile">
             <div className="profile-header">
                 <div className="profile-image">
-                    <img src={tempProfileImage || profileImage} alt="Profile"/>
+                    <img src={avatar || profileImage} alt="Profile"/>
                     {isEditing && (
                         <button className="edit-profile-picture-button"
                                 onClick={() => setShowProfilePictureModal(true)}>
@@ -98,7 +98,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                         <h2 className="profile-name">{nickname}</h2>
                         <img src={tierImage} alt="Tier" className="profile-tier"/>
                     </div>
-                    <p className="profile-percentage">상위 {topPercentage}%</p>
+                    <p className="profile-percentage">주간 점수 {week_score}</p>
                 </div>
             </div>
             <div className="profile-progress">
@@ -108,7 +108,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                     </button>
                 </div>
                 <div className="tier-info">
-                    <span className="current-tier">현재 티어: {currentTier}</span>
+                    <span className="current-tier">현재 티어: {nextTier}</span>
                     <span className="next-tier">다음 티어: {nextTier}</span>
                 </div>
                 <div className="progress-bar-container">
