@@ -14,7 +14,7 @@ import BannerModal from '../modal/BannerModal';
 import MyPoint from '../components/MyPoint';
 
 const UserProfile = ({ user, isEditing, setIsEditing }) => {
-    const { nickname, week_score, currentTier, nextTier, currentPoints, levelUpPoints, google_id, avatar, title } = user;
+    const { nickname, week_score, tier, nextTier, currentPoints, levelUpPoints, google_id, avatar, title } = user;
     const progressPercentage = (currentPoints / levelUpPoints) * 100;
 
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
@@ -117,7 +117,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                     </button>
                 </div>
                 <div className="tier-info">
-                    <span className="current-tier">현재 티어: {currentTier}</span>
+                    <span className="current-tier">현재 티어: {tier}</span>
                     <span className="next-tier">다음 티어: {nextTier}</span>
                 </div>
                 <div className="progress-bar-container">
