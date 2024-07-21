@@ -1,6 +1,6 @@
 import React from 'react';
-import silverPointImage from '../assets/profile.png';
-import goldPointImage from '../assets/profile.png';
+import silverPointImage from '../assets/point/silverPoint.png';
+import goldPointImage from '../assets/point/goldPoint.png';
 import '../styles/MyPoint.css';
 
 const MyPoint = ({ silverPoint, goldPoint }) => {
