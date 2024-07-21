@@ -129,10 +129,33 @@ const TaskEditing = () => {
             major: newMajor,
             completed: false
         };
-        setAssignments([...assignments, newAssignment]);
-        resetModal();
+    
+        // 데이터 전송
+        fetch('/api/todolist/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nickname: '1', // 사용자의 닉네임 ID를 여기에 넣어주세요
+                task: newTitle,
+                major: newMajor,
+                deadline: newDueDate,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                setAssignments([...assignments, newAssignment]);
+                resetModal();
+            } else {
+                console.error(data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     };
-
     const groupedAssignments = assignments.reduce((groups, assignment) => {
         const date = new Date(assignment.dueDate).toLocaleDateString();
         if (!groups[date]) {
