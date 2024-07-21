@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserProfile from '../components/UserProfile';
 import '../styles/MyPage.css';
 import { apiGet } from "../app/api/GET";
+import { apiPut } from '../app/api/PUT';  // 새로운 API 함수 임포트
 import BannerModal from '../modal/BannerModal';
 
 const MyPage = () => {
@@ -39,6 +40,7 @@ const MyPage = () => {
         apiGet("userInfo", userGoogleId)
             .then(data => {
                 setUser(data);
+                setSelectedBanner(data.banner);  // 유저 배너를 선택된 배너로 설정
                 setIsLoading(false);
             })
             .catch(err => {
@@ -46,13 +48,19 @@ const MyPage = () => {
                 setError("사용자 정보를 불러오는데 실패했습니다.");
                 setIsLoading(false);
             });
+    }, [userGoogleId]);
 
-        // Fetch banner list
-
-    }, []);
-
-    const handleBannerSelect = (bannerUrl) => {
+    const handleBannerSelect = async (bannerUrl) => {
         setSelectedBanner(bannerUrl);
+        setShowBannerModal(false);
+
+        try {
+            await apiPut("updateUserBanner", { google_id: user.google_id, banner: bannerUrl });
+            setUser(prevUser => ({ ...prevUser, banner: bannerUrl }));
+        } catch (error) {
+            console.error('Failed to update user banner:', error);
+            setError("배너를 업데이트하는데 실패했습니다.");
+        }
     };
 
     if (isLoading) return <div>로딩 중...</div>;
@@ -61,8 +69,7 @@ const MyPage = () => {
     return (
         <div className="my-page">
             <main className="main-content">
-                <div className="banner-container">
-                    <img src={selectedBanner || user.banner} alt="Banner" className="banner-image" />
+                <div className="banner-container" style={{ backgroundImage: `url(${selectedBanner || user.banner})` }}>
                     {isEditing && (
                         <button className="edit-banner-button" onClick={() => setShowBannerModal(true)}>
                             수정하기

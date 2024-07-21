@@ -13,6 +13,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework import status
 from .serializers import *
+from rest_framework import generics
+from .models import Banner
+from .serializers import banner_info, user_banner, mypage_info
 
 
 @csrf_exempt
@@ -163,4 +166,32 @@ class Banner_list(generics.ListAPIView): # 배너 리스트
     serializer_class = banner_info
 
 
+class BannerList(generics.ListAPIView):
+    queryset = Banner.objects.all()
+    serializer_class = banner_info
 
+<<<<<<< HEAD
+=======
+class UpdateBanner(generics.UpdateAPIView):
+    queryset = Banner.objects.all()
+    serializer_class = banner_info
+    lookup_field = 'id'
+
+class UpdateUserBanner(generics.UpdateAPIView):
+    queryset = GoogleUser.objects.all()
+    serializer_class = user_banner
+    lookup_field = 'google_id'
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+class UserDetailView(generics.RetrieveAPIView):
+    queryset = GoogleUser.objects.all()
+    serializer_class = mypage_info
+    lookup_field = 'google_id'
+>>>>>>> c039d194b28a90c06b376c09c529d92595fdc1c5

@@ -5,8 +5,10 @@ export const apiPut = async (type, putThing) => {
         let response;
         switch (type) {
             case "updateUserBanner":
-                response = await axiosInstance.put(`/update_banner`, putThing);
+                response = await axiosInstance.put(`/update_user_banner/${putThing.google_id}/`, putThing);
                 break;
+            default:
+                throw new Error(`Unknown API PUT type: ${type}`);
         }
         return response.data;
     } catch (error) {
