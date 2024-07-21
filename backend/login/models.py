@@ -21,38 +21,7 @@ class GoogleUser(models.Model):
     tier = models.CharField(max_length=30, choices=TIER_CHOICES, default = 'stone')
     nextTier = models.CharField(max_length=20, blank = True, default = 'Silver') # next tier
     levelUpPoints = models.IntegerField(default = 100)
-
-    def save(self, *args, **kwargs):
-        self.calculate_tier()
-        super().save(*args, **kwargs)
-
-    def calculate_tier(self):
-        # if self.total_score >= 1000:
-        #     tier = 'ruby'
-        if self.currentPoints >= 500:
-            self.tier = 'diamond'
-            self.nextTier = 'max'
-            self.levelUpPoints = 9999
-        elif self.currentPoints >= 300:
-            self.tier = 'platinum'
-            self.nextTier = 'diamond'
-            self.levelUpPoints = 500
-        elif self.currentPoints >= 100:
-            self.tier = 'gold'
-            self.nextTier = 'platinum'
-            self.levelUpPoints = 300
-        elif self.currentPoints >= 40:
-            self.tier = 'silver'
-            self.nextTier = 'gold'
-            self.levelUpPoints = 100
-        elif self.currentPoints > 0:
-            self.tier = 'bronze'
-            self.nextTier = 'silver'
-            self.levelUpPoints = 40
-        else:
-            self.tier = 'stone'
-            self.nextTier = 'bronze'
-            self.levelUpPoints = 0
+    #silverPoint = models.IntegerField(default = 0)
 
 class Banner(models.Model):
     name = models.CharField(max_length=255)

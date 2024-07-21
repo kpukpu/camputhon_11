@@ -40,9 +40,35 @@ def google_login(request):
 
 class UserDetailView(generics.GenericAPIView):
     serializer_class = mypage_info
-    def get(self, request, google_id, *args, **kwargs):
+    def get(self, request, nickname, *args, **kwargs):
+        task_time = get_object_or_404(GoogleUser, nickname=nickname)
         try:
-            user_instance = GoogleUser.objects.get(google_id=google_id)
+            if task_time.currentPoints >= 500:
+                task_time.tier = 'diamond'
+                task_time.nextTier = 'max'
+                task_time.levelUpPoints = 9999
+            elif task_time.currentPoints >= 300:
+                task_time.tier = 'platinum'
+                task_time.nextTier = 'diamond'
+                task_time.levelUpPoints = 500
+            elif task_time.currentPoints >= 100:
+                task_time.tier = 'gold'
+                task_time.nextTier = 'platinum'
+                task_time.levelUpPoints = 300
+            elif task_time.currentPoints >= 40:
+                task_time.tier = 'silver'
+                task_time.nextTier = 'gold'
+                task_time.levelUpPoints = 100
+            elif task_time.currentPoints > 0:
+                task_time.tier = 'bronze'
+                task_time.nextTier = 'silver'
+                task_time.levelUpPoints = 40
+            else:
+                task_time.tier = 'stone'
+                task_time.nextTier = 'bronze'
+                task_time.levelUpPoints = 0
+            task_time.save()
+            user_instance = GoogleUser.objects.get(nickname=nickname)
         except GoogleUser.DoesNotExist:
             raise NotFound("user not found")
         serializers = self.get_serializer(user_instance)
@@ -136,3 +162,6 @@ class Banner_list(generics.ListAPIView): # 배너 리스트
     queryset = Banner.objects.all()
     serializer_class = banner_info
 
+
+
+    

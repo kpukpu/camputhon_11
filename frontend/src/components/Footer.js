@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Award, Calendar, CheckSquare } from 'lucide-react';
+import { Home, Award, Calendar, CheckSquare, ShoppingBag } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Footer.css';
 
@@ -40,7 +40,7 @@ const Footer = () => {
                     </li>
                     <li>
                         <Link to="/shop" className={`footer-nav-link ${isActive('/shop') ? 'active' : ''}`}>
-                            <CheckSquare size={24}/>
+                            <ShoppingBag size={24}/>
                             <span>Shop</span>
                         </Link>
                     </li>
