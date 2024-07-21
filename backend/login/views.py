@@ -40,9 +40,9 @@ def google_login(request):
 
 class UserDetailView(generics.GenericAPIView):
     serializer_class = mypage_info
-    def get(self, request, nickname, *args, **kwargs):
+    def get(self, request, google_id, *args, **kwargs):
         try:
-            user_instance = GoogleUser.objects.get(nickname=nickname)
+            user_instance = GoogleUser.objects.get(google_id=google_id)
         except GoogleUser.DoesNotExist:
             raise NotFound("user not found")
         serializers = self.get_serializer(user_instance)
