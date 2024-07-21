@@ -1,20 +1,18 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from .models import user
-from rest_framework import serializers
 from .serializers import *
-
+from rest_framework import generics
+from rest_framework.exceptions import NotFound
 
 # Create your views here.
-
-class mark_mypage(APIView):
-    def get(self, request):
-        current_user = request.user
+class UserDetailView(generics.GenericAPIView):
+    serializer_class = mypage_info
+    def get(self, request, nickname, *args, **kwargs):
         try:
-            user_info = user.objects.get(nickname = current_user.nickname)
+            user_instance = user.objects.get(nickname=nickname)
         except user.DoesNotExist:
-            return Response({'error' : 'User not found'}, status=404)
-        serializer = mypage_info(user_info)
-        return Response(serializer.data)
+            raise NotFound("user not found")
+        serializers = self.get_serializer(user_instance)
+        return Response(serializers.data)
