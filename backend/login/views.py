@@ -94,8 +94,27 @@ class Update_Banner(APIView):  # user DB의 google_id에 해당하는 이용자�
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+# class Update_Title(APIView):
+#     def put(self, request):
+#         google_id = request.data.get('google_id')
+#         if not google_id:
+#             return Response({'error': 'Google ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+#         try:
+#             user = GoogleUser.objects.get(google_id=google_id)
+#         except GoogleUser.DoesNotExist:
+#             return Response({'error': 'GoogleUser not found'}, status=status.HTTP_404_NOT_FOUND)
+
+#         serializer = user_title(user, data=request.data, partial=True)
+
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class Update_Title(APIView):
-    def put(self, request):
+    def post(self, request):
         google_id = request.data.get('google_id')
         if not google_id:
             return Response({'error': 'Google ID is required'}, status=status.HTTP_400_BAD_REQUEST)

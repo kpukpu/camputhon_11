@@ -58,3 +58,6 @@ class Banner(models.Model):
     name = models.CharField(max_length=255)
     image_url = models.URLField(max_length=500)
     price = models.IntegerField(default=0)
+
+class Title(models.Model):
+    title_name = models.CharField(max_length=100)
