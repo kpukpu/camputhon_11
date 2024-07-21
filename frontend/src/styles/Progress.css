@@ -1,0 +1,14 @@
+.progress-bar {
+    width: 100%;
+    background-color: #e5e7eb;
+    border-radius: 6px;  /* 모서리를 약간 둥글게 만듭니다 */
+    height: 1rem;  /* 높이를 0.625rem에서 1rem으로 증가시켰습니다 */
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background-color: #2563eb;
+    height: 100%;
+    border-radius: 6px;  /* progress-bar와 동일한 border-radius 적용 */
+    transition: width 0.5s ease-in-out;
+}

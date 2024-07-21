@@ -1,0 +1,125 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: -5rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+.profile-image {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    margin-right: 1rem;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    padding-bottom: 0.5rem;
+}
+
+.name-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.profile-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.profile-title {
+    font-size: 0.875rem;
+    color: #4b5563;
+    background-color: #e5e7eb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    margin-right: 0.5rem;
+}
+
+.profile-tier {
+    margin-left: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.profile-percentage {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin: 0;
+    line-height: 0; /* 이 줄을 추가했습니다 */
+}
+
+.profile-progress {
+    width: 100%;
+}
+
+.tier-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.tier-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.current-tier, .next-tier {
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.progress-bar-container {
+    position: relative;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.875rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.edit-profile-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.edit-profile-button {
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.3s;
+}
+
+.edit-profile-button:hover {
+    background-color: #2563eb;
+}
