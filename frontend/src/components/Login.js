@@ -1,31 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import axios from 'axios';
 
-const Login = () => {
-    const handleLoginClick = () => {
-        window.location.href = 'https://example.com'; // 원하는 링크로 변경
-    };
+function Login() {
+  const [user, setUser] = useState(null);
 
-    return (
-        <div style={styles.container}>
-            <button style={styles.button} onClick={handleLoginClick}>
-                Login하기
-            </button>
+  const handleSuccess = (response) => {
+    console.log("Google Login Success:", response);
+    axios.post('http://localhost:8000/api/google-login/', {
+      token: response.credential
+    })
+    .then(res => {
+      console.log("Server Response:", res.data);
+      setUser(res.data);
+    })
+    .catch(err => {
+      console.error("Server Error:", err);
+    });
+  };
+
+  const handleFailure = (error) => {
+    console.log("Google Login Failed:", error);
+  };
+
+  const handleLogout = () => {
+    googleLogout();
+    setUser(null);
+    console.log("Logged out successfully");
+  };
+
+  return (
+    <div>
+      {user ? (
+        <div>
+          <h2>Welcome, {user.email}</h2>
+          <button onClick={handleLogout}>Logout</button>
         </div>
-    );
-};
-
-const styles = {
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '70vh', // 7/10 비율로 상단에 위치
-    },
-    button: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        cursor: 'pointer',
-    },
-};
+      ) : (
+        <GoogleLogin
+          onSuccess={handleSuccess}
+          onFailure={handleFailure}
+        />
+      )}
+    </div>
+  );
+}
 
 export default Login;
+
