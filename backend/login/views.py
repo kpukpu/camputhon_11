@@ -10,6 +10,10 @@ from .serializers import mypage_info
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializers import *
+
 
 @csrf_exempt
 def google_login(request):
@@ -44,7 +48,7 @@ class UserDetailView(generics.GenericAPIView):
         serializers = self.get_serializer(user_instance)
         return Response(serializers.data)
     
-class Update_Banner_Title(APIView): # user DB의 google_id에 해당하는 이용자의 banner url, title 칭호 변경
+class Update_Banner(APIView): # user DB의 google_id에 해당하는 이용자의 banner url 변경
     def put(self, request):
         google_id = request.data.get('google_id')
         if not google_id:
@@ -55,25 +59,35 @@ class Update_Banner_Title(APIView): # user DB의 google_id에 해당하는 이�
         except GoogleUser.DoesNotExist:
             return Response({'error': 'GoogleUser not found'}, status=status.HTTP_404_NOT_FOUND)
         
-        serializer = user_banner_title(user, data=request.data, partial=True)
+        serializer = user_banner(user, data=request.data, partial=True)
         
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Update_Title(APIView):
+    def put(self, request):
+        google_id = request.data.get('google_id')
+        if not google_id:
+            return Response({'error': 'Google ID is required'}, status=status.HTTP_400_BAD_REQUEST)
 
+        try:
+            user = GoogleUser.objects.get(google_id=google_id)
+        except GoogleUser.DoesNotExist:
+            return Response({'error': 'GoogleUser not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = user_title(user, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 @csrf_exempt
-def mypage(request):
-    status = get_object_or_404(GoogleUser)
-    # Book 객체 생성
-    user_status = Book(
-        book_number=new_book_number,
-        book_name=book_name,
-        publisher=publisher,
-        availability=availability,
-        author=author,
-        publication_date=publication_date,
-    )
-
-    return JsonResponse({'message': 'Book added successfully!'}, status=201)
+def mypage(self, request, format=None):
+        users = GoogleUser.objects.all()
+        serializer = GoogleUserSerializer(users, many=True)
+        return Response(serializer.data)
