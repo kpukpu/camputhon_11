@@ -1,18 +1,23 @@
 .user-profile {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    margin-left: 3rem;
+    margin-left: 2rem;
     margin-right: 3rem;
     margin-top: -5rem;
 }
 
 .profile-header {
+    position: relative;
+    z-index: 3;
     display: flex;
     align-items: flex-end;
     margin-bottom: 1rem;
 }
 
 .profile-image {
+    position: relative;
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
@@ -32,6 +37,8 @@
 }
 
 .name-title-container {
+    position: relative;
+    z-index: 4;
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
@@ -44,6 +51,8 @@
 }
 
 .profile-title {
+    position: relative;
+    z-index: 6;
     font-size: 0.875rem;
     color: #4b5563;
     background-color: #e5e7eb;
@@ -104,8 +113,11 @@
 }
 
 .edit-profile-container {
+    position: relative;
+    z-index: 3;
     display: flex;
     justify-content: flex-end;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
@@ -123,3 +135,104 @@
 .edit-profile-button:hover {
     background-color: #2563eb;
 }
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.modal ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.modal li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.modal li:hover {
+    background-color: #f0f0f0;
+}
+
+.edit-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.banner-list img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+}
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 15rem;
+    margin-bottom: -15rem;
+    z-index: 1;
+}
+
+.edit-banner-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-profile-picture-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    z-index: 5;
+}
+
+.edit-title-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 7;
+}
+
