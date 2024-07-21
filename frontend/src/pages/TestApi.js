@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { apiPost } from "../app/api/POST";
+import "../index.css";
 
 function Title() {
     return (

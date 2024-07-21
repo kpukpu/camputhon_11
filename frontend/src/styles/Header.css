@@ -13,7 +13,7 @@ nav {
         display: flex;
         justify-content: space-between; /* 왼쪽과 오른쪽 끝에 배치 */
         align-items: center;
-        padding: 0 20px; /* 양쪽에 패딩 추가 */
+        padding: 0 0.2rem; /* 양쪽에 패딩 추가 */
         font-family: 'NeoDunggeunmoPro', sans-serif;
 }
 
@@ -23,13 +23,13 @@ div.logo {
 }
 
 div.logo img {
-    width: 150px;
+    width: 10rem;
     height: auto;
 }
 
 /* 메뉴바 */
 div.menuBar {
-    padding: 28px 17px;
+    padding: 0.28em 0.17rem;
 }
 
 div.menuBar > a {
@@ -37,7 +37,7 @@ div.menuBar > a {
     color: white;
     font-size: 16px;
     font-weight: 700;
-    padding: 28px 17px;
+    padding: 0.28em 0.17rem;
 }
 
 div.menuBar > span {
