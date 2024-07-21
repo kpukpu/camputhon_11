@@ -4,6 +4,7 @@ from .models import TaskTime
 import time
 from rest_framework.decorators import api_view
 from django.http import HttpResponse
+from rest_framework.response import Response
 
 def start_task(request, task_id):
     _start_time = time.time()
@@ -42,3 +43,23 @@ def EndTime(request, task_time_id):
         return HttpResponse("Task ended successfully.")
     else:
         return HttpResponse("Task start time not set.", status=400)
+    
+def tier(request, task_time_id) :
+     # 점수 인스턴스 가져오기 또는 생성하기
+        task_time = get_object_or_404(TaskTime, id=task_time_id)
+        _total_score = task_time.total_score
+        
+        if _total_score >= 1000:
+            tier = 'ruby'
+        elif _total_score >= 500:
+            tier = 'diamond'
+        elif _total_score >= 300:
+            tier = 'platinum'
+        elif _total_score >= 100:
+            tier = 'gold'
+        elif _total_score >= 40:
+            tier = 'silver'
+        else:
+            tier = 'bronze'
+        
+        return Response({'success': True, 'message': 'ToDo saved and score updated successfully.', 'tier': tier})
