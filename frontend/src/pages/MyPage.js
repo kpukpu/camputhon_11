@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserProfile from '../components/UserProfile';
 import '../styles/MyPage.css';
 import { apiGet } from "../app/api/GET";
-import { apiPut } from '../app/api/PUT';  // 새로운 API 함수 임포트
+import { apiPut } from '../app/api/PUT';
 import BannerModal from '../modal/BannerModal';
 
 const MyPage = () => {
@@ -75,8 +75,8 @@ const MyPage = () => {
                             수정하기
                         </button>
                     )}
-                    <UserProfile user={user} isEditing={isEditing} setIsEditing={setIsEditing} />
                 </div>
+                <UserProfile user={user} isEditing={isEditing} setIsEditing={setIsEditing} className="user-profile"/>
             </main>
             {showBannerModal && (
                 <BannerModal
