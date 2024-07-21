@@ -24,7 +24,7 @@ REACT_BUILD_DIR = os.path.join(BASE_DIR, 'frontend', 'build')
 SECRET_KEY = 'django-insecure-vy%z4*lc*co4o+15itsd%&6#=$6bl96wviy(48u!^2yo=8d2f5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
+    'login',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,8 @@ DATABASES = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_METHODS = [
     "DELETE",
@@ -176,3 +179,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
