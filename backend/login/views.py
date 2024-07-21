@@ -6,9 +6,11 @@ from django.contrib.auth.models import User
 from .models import GoogleUser
 import json
 from rest_framework import generics
-from .serializers import mypage_info
+from rest_framework.views import APIView
+from .serializers import *
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
+from rest_framework import status
 
 @csrf_exempt
 def google_login(request):
@@ -42,3 +44,22 @@ class UserDetailView(generics.GenericAPIView):
             raise NotFound("user not found")
         serializers = self.get_serializer(user_instance)
         return Response(serializers.data)
+    
+class Update_Banner_Title(APIView): # user DB의 google_id에 해당하는 이용자의 banner url, title 칭호 변경
+    def put(self, request):
+        google_id = request.data.get('google_id')
+        if not google_id:
+            return Response({'error': 'Google ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user = GoogleUser.objects.get(google_id=google_id)
+        except GoogleUser.DoesNotExist:
+            return Response({'error': 'GoogleUser not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = user_banner_title(user, data=request.data, partial=True)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

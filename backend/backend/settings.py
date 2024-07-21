@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'timecheck',
     'todolist',
-    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
