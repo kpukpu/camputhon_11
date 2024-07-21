@@ -23,5 +23,14 @@ def resist_to_do(request):
         )
         new_resist.save()
         return Response({'success': True, 'message': 'ToDo saved successfully.'})
+    
+       
+
+
     except Exception as e:
         return Response({'success': False, 'message': str(e)}, status=400)
+    
+
+
+
+
