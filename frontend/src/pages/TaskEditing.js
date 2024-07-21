@@ -23,6 +23,8 @@ const TaskEditing = () => {
     const [currentAssignment, setCurrentAssignment] = useState(null);
     const [editTitle, setEditTitle] = useState('');
     const [editDueDate, setEditDueDate] = useState('');
+    const [newTitle, setNewTitle] = useState('');
+    const [newDueDate, setNewDueDate] = useState('');
     const [timers, setTimers] = useState({});
     const [intervals, setIntervals] = useState({});
 
@@ -115,6 +117,17 @@ const TaskEditing = () => {
         ));
     };
 
+    const handleAddAssignment = () => {
+        const newAssignment = {
+            id: assignments.length ? Math.max(...assignments.map(a => a.id)) + 1 : 1,
+            title: newTitle,
+            dueDate: newDueDate,
+            completed: false
+        };
+        setAssignments([...assignments, newAssignment]);
+        resetModal();
+    };
+
     const groupedAssignments = assignments.reduce((groups, assignment) => {
         const date = new Date(assignment.dueDate).toLocaleDateString();
         if (!groups[date]) {
@@ -127,22 +140,14 @@ const TaskEditing = () => {
     const resetModal = () => {
         setModalType(null);
         setCurrentAssignment(null);
-    };
-
-    const handleAddAssignment = () => {
-        const newAssignment = {
-            id: assignments.length + 1,
-            title: '새 과제',
-            dueDate: '2024-12-31T23:59',
-            completed: false
-        };
-        setAssignments([...assignments, newAssignment]);
+        setNewTitle('');
+        setNewDueDate('');
     };
 
     return (
         <div className="assignment-list">
             <h2>과제 목록</h2>
-            <button onClick={handleAddAssignment} className="add-button">과제 추가</button>
+            <button onClick={() => setModalType('add')}>과제 추가</button>
             {Object.entries(groupedAssignments).map(([date, assignmentsOnDate]) => (
                 <div key={date}>
                     <h3>{date}</h3>
@@ -211,6 +216,26 @@ const TaskEditing = () => {
                     <div className="button-groupA">
                         <button onClick={handleDelete}>삭제</button>
                         <button className="cancel" onClick={handleCancel}>취소</button>
+                    </div>
+                </div>
+            </EditModal>
+            <EditModal isOpen={modalType === 'add'} onClose={resetModal}>
+                <div className="modal-content">
+                    <h3>과제 추가</h3>
+                    <input
+                        type="text"
+                        value={newTitle}
+                        onChange={(e) => setNewTitle(e.target.value)}
+                        placeholder="제목"
+                    />
+                    <input
+                        type="datetime-local"
+                        value={newDueDate}
+                        onChange={(e) => setNewDueDate(e.target.value)}
+                    />
+                    <div className="button-groupA">
+                        <button onClick={handleAddAssignment}>추가</button>
+                        <button className="cancel" onClick={resetModal}>취소</button>
                     </div>
                 </div>
             </EditModal>
