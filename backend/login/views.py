@@ -40,8 +40,8 @@ def google_login(request):
 
 class UserDetailView(generics.GenericAPIView):
     serializer_class = mypage_info
-    def get(self, request, nickname, *args, **kwargs):
-        task_time = get_object_or_404(GoogleUser, nickname=nickname)
+    def get(self, request, google_id, *args, **kwargs):
+        task_time = get_object_or_404(GoogleUser, google_id=google_id)
         try:
             if task_time.currentPoints >= 500:
                 task_time.tier = 'diamond'
@@ -68,7 +68,7 @@ class UserDetailView(generics.GenericAPIView):
                 task_time.nextTier = 'bronze'
                 task_time.levelUpPoints = 0
             task_time.save()
-            user_instance = GoogleUser.objects.get(nickname=nickname)
+            user_instance = GoogleUser.objects.get(google_id=google_id)
         except GoogleUser.DoesNotExist:
             raise NotFound("user not found")
         serializers = self.get_serializer(user_instance)
