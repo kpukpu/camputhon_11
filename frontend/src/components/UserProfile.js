@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Progress from './Progress';
 import '../styles/UserProfile.css';
 import profileImage from '../assets/profile.png';
-import tierImage from '../assets/tempTierImage.png';
+import tierImage from '../assets/tier/bronze.png';
 import BannerModal from '../modal/BannerModal';
 import ProfilePictureModal from '../modal/ProfilePictureModal';
 import TitleModal from '../modal/TitleModal';
 import MyPoint from '../components/MyPoint';
+
 
 const UserProfile = ({ user }) => {
     const { nickname, topPercentage, currentTier, nextTier, currentPoints, levelUpPoints } = user;

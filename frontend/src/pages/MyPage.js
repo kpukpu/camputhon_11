@@ -29,7 +29,6 @@ const MyPage = () => {
                     <img src={bannerImage} alt="Banner" className="banner-image" />
                     <UserProfile user={user} />
                 </div>
-                {/* 여기에 추가적인 마이페이지 컨텐츠를 넣을 수 있습니다 */}
             </main>
         </div>
     );
