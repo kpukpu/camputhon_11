@@ -61,5 +61,11 @@ def tier(request, task_time_id) :
             tier = 'silver'
         else:
             tier = 'bronze'
+
+        task_time.tier = tier
+        task_time.save()
         
-        return Response({'success': True, 'message': 'ToDo saved and score updated successfully.', 'tier': tier})
+        return Response({'success': True, 'tier': tier})
+        
+
+
