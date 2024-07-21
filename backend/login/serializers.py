@@ -10,3 +10,8 @@ class user_banner_title(serializers.ModelSerializer):
     class Meta:
         model = GoogleUser
         fields = ['banner', 'title']
+
+class banner_info(serializers.ModelSerializer):
+    class Meta:
+        model = GoogleUser
+        fields = ['name', 'image_url', 'price']

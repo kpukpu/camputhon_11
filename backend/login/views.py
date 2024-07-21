@@ -63,3 +63,7 @@ class Update_Banner_Title(APIView): # user DB의 google_id에 해당하는 이�
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Show_Banner(generics.ListAPIView):
+    queryset = Banner.objects.all()
+    serializer_class = banner_info

@@ -39,3 +39,8 @@ class GoogleUser(models.Model):
             return 'bronze'
         else:
             return 'stone'
+
+class Banner(models.Model): # (브루스) 배너 데이터베이스
+    name = models.CharField(max_length=255) # 배너 명
+    image_url = models.URLField(max_length=500) # 배너 이미지 url
+    price = models.IntegerField(default=0) # 배너 가격
