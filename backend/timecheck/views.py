@@ -23,21 +23,28 @@ def EndTime(request, task_time_id):
         if task_time.major == True: #나중에 수정 요함
             if accure < 60:
                 task_time.currentPoints += 2
+                task_time.silverPoint +=5
             elif accure > 60 & accure < 120:
                 task_time.currentPoints += 3
+                task_time.silverPoint += 10
             elif accure > 120 and accure < 180:
                 task_time.currentPoints += 4
+                task_time.silverPoint += 15
             elif accure > 180 and accure < 240:
                 task_time.currentPoints += 5
+                task_time.silverPoint += 20
         elif task_time.major == False: 
             if accure < 60:
                 task_time.currentPoints += 1
             elif accure > 60 & accure < 120:
                 task_time.currentPoints += 2
+                task_time.silverPoint += 5
             elif accure > 120 and accure < 180:
                 task_time.currentPoints += 3
+                task_time.silverPoint += 10
             elif accure > 180 and accure < 240:
                 task_time.currentPoints += 4
+                task_time.silverPoint += 15
         task_time.save()
         return HttpResponse("Task ended successfully.")
     else:

@@ -7,19 +7,23 @@ from login.models import GoogleUser
 
 # Create your views here.
 
+
+
 @api_view(['POST'])
 def resist_to_do(request):
     data = json.loads(request.body)
-    nickname_id = data.get('nickname_id')
-    _hw_name = data.get('hw_name')
+    
+    nickname_id = data.get('nickname')
+    _task = data.get('task')
     _major = data.get('major')
-
+    _deadline = data.get('deadline')
     try:
         nickname = GoogleUser.objects.get(id=nickname_id) # nickname_id 써도 되나?
         new_resist = what_to_do(
             nickname=nickname,
-            hw_name=_hw_name,
-            major=_major
+            task=_task,
+            major=_major,
+            deadline=_deadline
         )
         new_resist.save()
         return Response({'success': True, 'message': 'ToDo saved successfully.'})
