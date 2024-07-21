@@ -90,8 +90,4 @@ class Update_Title(APIView):
 def mypage(self, request, format=None):
         users = GoogleUser.objects.all()
         serializer = GoogleUserSerializer(users, many=True)
-<<<<<<< HEAD
         return Response(serializer.data)
-=======
-        return Response(serializer.data)
->>>>>>> 2c6546892092a07f00ca389b534a1176119b7e28
