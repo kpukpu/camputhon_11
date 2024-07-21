@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/TaskEditing.css';
 import EditModal from '../modal/EditModal';
+import TodayQuest from './TodayQuest';
+
+
 
 // Helper function to format time as HH:MM:SS
 const formatTime = (seconds) => {
@@ -149,8 +152,11 @@ const TaskEditing = () => {
 
     return (
         <div className="assignment-list">
-            <h2>과제 목록</h2>
+            <TodayQuest />
+
             <button onClick={() => setModalType('add')}>과제 추가</button>
+
+
             {Object.entries(groupedAssignments).map(([date, assignmentsOnDate]) => (
                 <div key={date}>
                     <h3>{date}</h3>
@@ -253,7 +259,7 @@ const TaskEditing = () => {
                         />
                         전공 여부
                     </label>
-                    <div className="button-groupA">
+                    <div className="button-group">
                         <button onClick={handleAddAssignment}>추가</button>
                         <button className="cancel" onClick={handleCancel}>취소</button>
                     </div>
