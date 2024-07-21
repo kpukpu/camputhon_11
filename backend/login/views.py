@@ -5,6 +5,10 @@ from google.auth.transport import requests
 from django.contrib.auth.models import User
 from .models import GoogleUser
 import json
+from rest_framework import generics
+from .serializers import mypage_info
+from rest_framework.response import Response
+from rest_framework.exceptions import NotFound
 
 @csrf_exempt
 def google_login(request):
@@ -29,3 +33,12 @@ def google_login(request):
         except ValueError:
             return JsonResponse({'status': 'failed', 'message': 'Invalid token'})
 
+class UserDetailView(generics.GenericAPIView):
+    serializer_class = mypage_info
+    def get(self, request, nickname, *args, **kwargs):
+        try:
+            user_instance = GoogleUser.objects.get(nickname=nickname)
+        except GoogleUser.DoesNotExist:
+            raise NotFound("user not found")
+        serializers = self.get_serializer(user_instance)
+        return Response(serializers.data)

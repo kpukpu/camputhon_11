@@ -1,0 +1,21 @@
+.my-point-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.point-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.point-image {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.point-value {
+    font-size: 1rem;
+    font-weight: bold;
+}

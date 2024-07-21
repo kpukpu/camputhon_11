@@ -41,7 +41,7 @@
     z-index: 4;
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .profile-name {
@@ -71,7 +71,7 @@
     font-size: 0.875rem;
     color: #4b5563;
     margin: 0;
-    line-height: 0; /* 이 줄을 추가했습니다 */
+    line-height: 0;
 }
 
 .profile-progress {
@@ -236,3 +236,6 @@
     z-index: 7;
 }
 
+.point {
+    margin-top: 1.5rem;
+}
