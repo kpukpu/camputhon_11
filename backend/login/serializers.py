@@ -6,10 +6,15 @@ class mypage_info(serializers.ModelSerializer): # 마이 페이지에 표시할 
         model = GoogleUser
         fields = ['nickname', 'banner', 'title', 'total_score', 'tier', 'google_id']
 
-class user_banner_title(serializers.ModelSerializer):
+class user_banner(serializers.ModelSerializer):
     class Meta:
         model = GoogleUser
-        fields = ['banner', 'title']
+        fields = ['banner']
+
+class user_title(serializers.ModelSerializer):
+    class Meta:
+        model = GoogleUser
+        fields = ['title']
 
 class banner_info(serializers.ModelSerializer):
     class Meta:
