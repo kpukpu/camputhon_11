@@ -14,7 +14,8 @@ const TaskEditing = () => {
     const initialAssignments = [
         { id: 1, title: '컴퓨터 구조', dueDate: '2024-07-31T23:59', completed: false },
         { id: 2, title: '자료구조', dueDate: '2024-08-05T23:59', completed: false },
-        { id: 3, title: '알고리즘', dueDate: '2024-07-31T23:59', completed: false }
+        { id: 3, title: '알고리즘', dueDate: '2024-07-31T23:59', completed: false },
+        { id: 4, title: '알고리즘2', dueDate: '2024-07-31T23:55', completed: false }
     ];
 
     const [assignments, setAssignments] = useState(initialAssignments);
@@ -203,6 +204,7 @@ const TaskEditing = () => {
                 </div>
             </EditModal>
         </div>
+
     );
 };
 
