@@ -1,11 +1,13 @@
 import axiosInstance from './AxiosConfig';
 
-export const apiGet = async (type) => {
+export const apiGet = async (type, arg1) => {
     try {
+        let response;
         switch (type) {
-            case 1: break;
+            case "userInfo":
+                response = await axiosInstance.get(`/mypage/${arg1}`);
         }
-        const response = await axiosInstance.get('/get');
+
         return response.data;
     } catch (error) {
         console.error("There was an error getting things!", error);

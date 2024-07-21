@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import Progress from './Progress';
 import '../styles/UserProfile.css';
 import profileImage from '../assets/profile.png';
-import tierImage from '../assets/tier/bronze.png';
-import BannerModal from '../modal/BannerModal';
+import bronzeTierImage from '../assets/tier/bronze.png';
+import silverTierImage from '../assets/tier/silver.png';
+import goldTierImage from '../assets/tier/gold.png';
+import emeraldTierImage from '../assets/tier/emerald.png';
+import diamondTierImage from '../assets/tier/diamond.png';
+import rubyTierImage from '../assets/tier/ruby.png';
 import ProfilePictureModal from '../modal/ProfilePictureModal';
 import TitleModal from '../modal/TitleModal';
 import MyPoint from '../components/MyPoint';
 
-
-const UserProfile = ({ user }) => {
-    const { nickname, topPercentage, currentTier, nextTier, currentPoints, levelUpPoints } = user;
+const UserProfile = ({ user, isEditing, setIsEditing }) => {
+    const { nickname, topPercentage, tier, currentTier, nextTier, currentPoints, levelUpPoints, google_id } = user;
     const progressPercentage = (currentPoints / levelUpPoints) * 100;
 
-    const [isEditing, setIsEditing] = useState(false);
-    const [showBannerModal, setShowBannerModal] = useState(false);
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
     const [showTitleModal, setShowTitleModal] = useState(false);
     const [tempProfileImage, setTempProfileImage] = useState(null);
@@ -24,10 +25,30 @@ const UserProfile = ({ user }) => {
     // 임시 칭호 리스트
     const titleList = ['초보 개발자', '중급 개발자', '고급 개발자', '마스터 개발자'];
 
+    const getTierImage = (tier) => {
+        switch (tier) {
+            case 'bronze':
+                return bronzeTierImage;
+            case 'silver':
+                return silverTierImage;
+            case 'gold':
+                return goldTierImage;
+            case 'emerald':
+                return emeraldTierImage;
+            case 'diamond':
+                return diamondTierImage;
+            case 'ruby':
+                return rubyTierImage;
+            default:
+                return bronzeTierImage;
+        }
+    };
+
+    const tierImage = getTierImage(tier);
+
     const toggleEditing = () => {
         setIsEditing(!isEditing);
         if (isEditing) {
-            // 여기에 저장 로직을 추가합니다
             console.log('프로필 변경사항 저장');
         }
     };
@@ -49,13 +70,6 @@ const UserProfile = ({ user }) => {
 
     return (
         <div className="user-profile">
-            <div className="banner-container">
-                {isEditing && (
-                    <button className="edit-banner-button" onClick={() => setShowBannerModal(true)}>
-                        수정하기
-                    </button>
-                )}
-            </div>
             <div className="profile-header">
                 <div className="profile-image">
                     <img src={tempProfileImage || profileImage} alt="Profile"/>
@@ -105,9 +119,6 @@ const UserProfile = ({ user }) => {
             <p className="point">
                 <MyPoint silverPoint={silverPoint} goldPoint={goldPoint}/>
             </p>
-            {showBannerModal && (
-                <BannerModal onClose={() => setShowBannerModal(false)}/>
-            )}
             {showProfilePictureModal && (
                 <ProfilePictureModal onClose={() => setShowProfilePictureModal(false)}
                                      onUpload={handleProfilePictureUpload}/>
