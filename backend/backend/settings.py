@@ -21,6 +21,7 @@ REACT_BUILD_DIR = os.path.join(BASE_DIR, 'frontend', 'build')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-vy%z4*lc*co4o+15itsd%&6#=$6bl96wviy(48u!^2yo=8d2f5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
