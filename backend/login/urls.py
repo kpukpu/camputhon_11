@@ -7,4 +7,5 @@ urlpatterns = [
     path('mypage/<str:nickname>/', UserDetailView.as_view(), name = 'user-detail'),
     path('update_banner/', Update_Banner.as_view(), name = 'update-banner'),
     path('update_title/', Update_Title.as_view(), name = 'update-title'),
+    path('banner_list', Banner_list.as_view(), name = 'banner-list'),
 ]

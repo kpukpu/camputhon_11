@@ -18,5 +18,5 @@ class user_title(serializers.ModelSerializer):
 
 class banner_info(serializers.ModelSerializer):
     class Meta:
-        model = GoogleUser
+        model = Banner
         fields = ['name', 'image_url', 'price']
