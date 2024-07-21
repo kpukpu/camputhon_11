@@ -10,6 +10,9 @@ from .serializers import mypage_info
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializers import *
 
 @csrf_exempt
 def google_login(request):
