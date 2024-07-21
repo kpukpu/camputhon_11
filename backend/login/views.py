@@ -170,8 +170,6 @@ class BannerList(generics.ListAPIView):
     queryset = Banner.objects.all()
     serializer_class = banner_info
 
-<<<<<<< HEAD
-=======
 class UpdateBanner(generics.UpdateAPIView):
     queryset = Banner.objects.all()
     serializer_class = banner_info
@@ -194,4 +192,3 @@ class UserDetailView(generics.RetrieveAPIView):
     queryset = GoogleUser.objects.all()
     serializer_class = mypage_info
     lookup_field = 'google_id'
->>>>>>> c039d194b28a90c06b376c09c529d92595fdc1c5

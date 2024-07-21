@@ -171,13 +171,10 @@ STATICFILES_DIRS = [
     #os.path.join(STATIC_ROOT, 'client/static')
 ]
 
-<<<<<<< HEAD
-=======
 
 # Configure the directory where collectstatic will collect static files for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
->>>>>>> c039d194b28a90c06b376c09c529d92595fdc1c5
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
