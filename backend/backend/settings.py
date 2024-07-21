@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent #NIR_HACK_DIR에 위치함
+BASE_DIR = Path(__file__).resolve().parent.parent.parent #NIR_HACK_DIR에 위치함
 
 REACT_BUILD_DIR = os.path.join(BASE_DIR, 'frontend', 'build')
 # Quick-start development settings - unsuitable for production
@@ -161,16 +161,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/frontend/build/static/'
+STATIC_ROOT = os.path.join(REACT_BUILD_DIR, '/frontend/build/static/')
 
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    #os.path.join(BASE_DIR, "frontend/build/static"),
+    os.path.join(REACT_BUILD_DIR, "static"),
     # 실제 static 파일은 모두 client 측에서 소유
     #os.path.join(STATIC_ROOT, 'client/static')
 ]
+
 
 # Configure the directory where collectstatic will collect static files for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

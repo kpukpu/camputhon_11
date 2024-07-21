@@ -14,7 +14,7 @@ class user_title(serializers.ModelSerializer):
 class banner_info(serializers.ModelSerializer):
     class Meta:
         model = Banner
-        fields = ['name', 'image_url', 'price']
+        fields = ['id', 'name', 'image_url', 'price']  # 'id' 필드 추가
 
 class mypage_info(serializers.ModelSerializer):
     class Meta:
