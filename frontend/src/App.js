@@ -4,7 +4,8 @@ import Home from "./pages/Home";
 import TestApi from "./pages/TestApi"
 import MyPage from "./pages/MyPage";
 import Layout from "./layout/Layout";
-import Task from "./pages/TaskEditing"
+import Task from "./pages/TaskEditing";
+import Shop from "./pages/Shop";
 import "./index.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/calendar" element={<TestApi />} />
                 <Route path="/my-page" element={<MyPage />} />
                 <Route path="/task" element={<Task />} />
+                <Route path="/shop" element={<Shop />} />
             </Routes>
             </Layout>
         </>

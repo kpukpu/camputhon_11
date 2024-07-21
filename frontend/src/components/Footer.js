@@ -16,26 +16,32 @@ const Footer = () => {
                 <ul className="footer-nav-list">
                     <li>
                         <Link to="/my-page" className={`footer-nav-link ${isActive('/my-page') ? 'active' : ''}`}>
-                            <Home size={24} />
+                            <Home size={24}/>
                             <span>MyPage</span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/ranking" className={`footer-nav-link ${isActive('/ranking') ? 'active' : ''}`}>
-                            <Award size={24} />
+                            <Award size={24}/>
                             <span>Ranking</span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/calendar" className={`footer-nav-link ${isActive('/calendar') ? 'active' : ''}`}>
-                            <Calendar size={24} />
+                            <Calendar size={24}/>
                             <span>Calendar</span>
                         </Link>
                     </li>
                     <li>
                         <Link to="/task" className={`footer-nav-link ${isActive('/task') ? 'active' : ''}`}>
-                            <CheckSquare size={24} />
+                            <CheckSquare size={24}/>
                             <span>Task</span>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/shop" className={`footer-nav-link ${isActive('/shop') ? 'active' : ''}`}>
+                            <CheckSquare size={24}/>
+                            <span>Shop</span>
                         </Link>
                     </li>
                 </ul>

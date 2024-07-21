@@ -14,7 +14,7 @@
 
 .assignment-list h3 {
     margin-top: 10px;
-    color: #007bff;
+    color: #81bef7;
     font-size: 18px; /* 모바일에서도 잘 보이도록 글자 크기 조정 */
 }
 
@@ -48,25 +48,28 @@
     justify-content: flex-end; /* 버튼들을 오른쪽 끝으로 정렬 */
 }
 
-.assignment-item .button-group button {
+.assignment-item .button-group button,
+.button-groupA button {
     padding: 5px 8px; /* 버튼의 크기 조정 */
     border: none;
-    border-radius: 3px;
+    border-radius: 4px; /* 버튼의 둥근 모서리 설정 */
     cursor: pointer;
-    background-color: #81BEF7;
-    color: white;
+    background-color: #81BEF7; /* 버튼 배경 색상 */
+    color: white; /* 버튼 텍스트 색상 */
     font-size: 12px; /* 모바일에서도 적절히 보이도록 글자 크기 조정 */
+    transition: background-color 0.3s ease; /* 배경 색상 변경 시 부드러운 전환 효과 */
 }
 
-.button-groupA button {
-    gap: 10px;
-    padding: 5px 8px; /* 버튼의 크기 조정 */
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    background-color: #81BEF7;
-    color: white;
-    font-size: 12px; /* 모바일에서도 적절히 보이도록 글자 크기 조정 */
+.assignment-item .button-group button:hover,
+.button-groupA button:hover {
+    background-color: #6fa9e0; /* 버튼 호버 시 색상 */
+}
+
+.assignment-item .button-group button:disabled,
+.button-groupA button:disabled {
+    background-color: #ddd; /* 비활성화된 버튼의 배경 색상 */
+    color: #666; /* 비활성화된 버튼의 텍스트 색상 */
+    cursor: not-allowed; /* 비활성화된 버튼의 커서 스타일 */
 }
 
 .assignment-item .button-group input[type="checkbox"] {
@@ -110,7 +113,8 @@
         font-size: 16px; /* 데스크탑에서의 글자 크기 조정 */
     }
 
-    .assignment-item .button-group button {
+    .assignment-item .button-group button,
+    .button-groupA button {
         padding: 8px 12px;
         font-size: 14px; /* 데스크탑에서의 글자 크기 조정 */
     }
@@ -142,6 +146,7 @@
     width: 100%;
     position: relative;
     z-index: 1001; /* Ensure the content is above the overlay */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for better visual separation */
 }
 
 .modal-close {
@@ -157,6 +162,7 @@
 
 .modal-content h3 {
     margin-top: 0;
+    color: #333; /* Heading 색상 */
 }
 
 .modal-content input[type="text"],
@@ -166,10 +172,32 @@
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 14px; /* 입력 필드의 글자 크기 */
 }
 
 .modal-content .button-groupA {
     display: flex;
     gap: 10px; /* 버튼 간의 간격 조정 */
     justify-content: flex-end; /* 버튼들을 오른쪽 끝으로 정렬 */
+}
+
+.modal-content .button-groupA button {
+    padding: 8px 12px; /* 버튼의 크기 조정 */
+    border: none;
+    border-radius: 4px; /* 버튼의 둥근 모서리 설정 */
+    cursor: pointer;
+    background-color: #81BEF7; /* 버튼 배경 색상 */
+    color: white; /* 버튼 텍스트 색상 */
+    font-size: 14px; /* 버튼 텍스트 크기 */
+    transition: background-color 0.3s ease; /* 배경 색상 변경 시 부드러운 전환 효과 */
+}
+
+.modal-content .button-groupA button:hover {
+    background-color: #6fa9e0; /* 버튼 호버 시 색상 */
+}
+
+.modal-content .button-groupA button:disabled {
+    background-color: #ddd; /* 비활성화된 버튼의 배경 색상 */
+    color: #666; /* 비활성화된 버튼의 텍스트 색상 */
+    cursor: not-allowed; /* 비활성화된 버튼의 커서 스타일 */
 }
