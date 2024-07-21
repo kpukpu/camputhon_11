@@ -6,11 +6,10 @@ from django.contrib.auth.models import User
 from .models import GoogleUser
 import json
 from rest_framework import generics
-from rest_framework.views import APIView
-from .serializers import *
+from .serializers import mypage_info
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
-from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 @csrf_exempt
 def google_login(request):
@@ -63,7 +62,3 @@ class Update_Banner_Title(APIView): # user DB의 google_id에 해당하는 이�
             return Response(serializer.data, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-class Show_Banner(generics.ListAPIView):
-    queryset = Banner.objects.all()
-    serializer_class = banner_info

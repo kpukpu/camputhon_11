@@ -19,6 +19,9 @@ class GoogleUser(models.Model):
     banner = models.URLField(max_length=500, blank=True) # 브루스배너 이미지 url 주소
     title = models.TextField(default='') # 칭호
     tier = models.CharField(max_length=30, choices=TIER_CHOICES, default = 'stone')
+    
+    
+
 
     def save(self, *args, **kwargs):
         self.tier = self.calculate_tier()

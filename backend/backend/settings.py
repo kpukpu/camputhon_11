@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
     'login',
+    'mission', #미션 추가
 ]
 
 MIDDLEWARE = [
