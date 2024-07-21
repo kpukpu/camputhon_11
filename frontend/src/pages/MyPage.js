@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-/*import Header from './Header';
-import Footer from './Footer';*/
 import UserProfile from '../components/UserProfile';
 import '../styles/MyPage.css';
 import bannerImage from '../assets/profile.png';
-
 
 const MyPage = () => {
     const [user, setUser] = useState({
@@ -15,7 +12,9 @@ const MyPage = () => {
         currentPoints: 10,
         levelUpPoints: 100,
         currentTier: 'Bronze I',
-        nextTier: 'Bronze II'
+        nextTier: 'Bronze II',
+        silverPoint: 500,
+        goldPoint: 100
     });
 
     useEffect(() => {
@@ -25,7 +24,6 @@ const MyPage = () => {
 
     return (
         <div className="my-page">
-
             <main className="main-content">
                 <div className="banner-container">
                     <img src={bannerImage} alt="Banner" className="banner-image" />
@@ -33,7 +31,6 @@ const MyPage = () => {
                 </div>
                 {/* 여기에 추가적인 마이페이지 컨텐츠를 넣을 수 있습니다 */}
             </main>
-
         </div>
     );
 };

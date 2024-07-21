@@ -6,9 +6,10 @@ import tierImage from '../assets/tempTierImage.png';
 import BannerModal from '../modal/BannerModal';
 import ProfilePictureModal from '../modal/ProfilePictureModal';
 import TitleModal from '../modal/TitleModal';
+import MyPoint from '../components/MyPoint';
 
 const UserProfile = ({ user }) => {
-    const { nickname, title, topPercentage, currentTier, nextTier, currentPoints, levelUpPoints } = user;
+    const { nickname, topPercentage, currentTier, nextTier, currentPoints, levelUpPoints } = user;
     const progressPercentage = (currentPoints / levelUpPoints) * 100;
 
     const [isEditing, setIsEditing] = useState(false);
@@ -16,6 +17,8 @@ const UserProfile = ({ user }) => {
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
     const [showTitleModal, setShowTitleModal] = useState(false);
     const [tempProfileImage, setTempProfileImage] = useState(null);
+    const [currentTitle, setCurrentTitle] = useState(user.title);
+    const { silverPoint, goldPoint } = user;
 
     // 임시 칭호 리스트
     const titleList = ['초보 개발자', '중급 개발자', '고급 개발자', '마스터 개발자'];
@@ -28,14 +31,19 @@ const UserProfile = ({ user }) => {
         }
     };
 
-    const handleProfilePictureUpload = (file) => {
-        setTempProfileImage(URL.createObjectURL(file));
-    };
-
     const handleTitleClick = () => {
         if (isEditing) {
             setShowTitleModal(true);
         }
+    };
+
+    const handleTitleSelect = (newTitle) => {
+        setCurrentTitle(newTitle);
+        setShowTitleModal(false);
+    };
+
+    const handleProfilePictureUpload = (file) => {
+        setTempProfileImage(URL.createObjectURL(file));
     };
 
     return (
@@ -43,7 +51,7 @@ const UserProfile = ({ user }) => {
             <div className="banner-container">
                 {isEditing && (
                     <button className="edit-banner-button" onClick={() => setShowBannerModal(true)}>
-                        배너 수정하기
+                        수정하기
                     </button>
                 )}
             </div>
@@ -53,7 +61,7 @@ const UserProfile = ({ user }) => {
                     {isEditing && (
                         <button className="edit-profile-picture-button"
                                 onClick={() => setShowProfilePictureModal(true)}>
-                            수정
+                            수정하기
                         </button>
                     )}
                 </div>
@@ -61,7 +69,7 @@ const UserProfile = ({ user }) => {
                     <div className="name-title-container">
                         <div className="title-wrapper">
                             <span className="profile-title">
-                                {title}
+                                {currentTitle}
                             </span>
                             {isEditing && (
                                 <button
@@ -93,14 +101,22 @@ const UserProfile = ({ user }) => {
                     <span className="progress-text">{currentPoints} / {levelUpPoints}</span>
                 </div>
             </div>
+            <p className="point">
+                <MyPoint silverPoint={silverPoint} goldPoint={goldPoint}/>
+            </p>
             {showBannerModal && (
-                <BannerModal onClose={() => setShowBannerModal(false)} />
+                <BannerModal onClose={() => setShowBannerModal(false)}/>
             )}
             {showProfilePictureModal && (
-                <ProfilePictureModal onClose={() => setShowProfilePictureModal(false)} onUpload={handleProfilePictureUpload} />
+                <ProfilePictureModal onClose={() => setShowProfilePictureModal(false)}
+                                     onUpload={handleProfilePictureUpload}/>
             )}
             {showTitleModal && (
-                <TitleModal titles={titleList} onClose={() => setShowTitleModal(false)} />
+                <TitleModal
+                    titles={titleList}
+                    onClose={() => setShowTitleModal(false)}
+                    onSelect={handleTitleSelect}
+                />
             )}
         </div>
     );
