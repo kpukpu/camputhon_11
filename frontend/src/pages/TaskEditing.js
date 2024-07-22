@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TaskEditing.css';
 import EditModal from '../modal/EditModal';
 import TodayQuest from './TodayQuest';
+import axios from "axios";
 
 
 
@@ -46,7 +47,8 @@ const TaskEditing = () => {
         setEditTitle(assignment.Task);
         setEditDueDate(assignment.dueDate);
         setEditMajor(assignment.major);
-        setModalType('edit');
+        setModalType('edit')
+        console.log("확인");
     };
 
     const handleUpdate = () => {
@@ -113,13 +115,39 @@ const TaskEditing = () => {
         }));
     };
 
-    const handleCheck = (id) => {
+    const handleCheck = async (id) => {
+        const assignment = assignments.find(assignment => assignment.id === id);
+        const completed = !assignment.completed;
+
         setAssignments(assignments.map(assignment =>
             assignment.id === id
-                ? { ...assignment, completed: !assignment.completed }
+                ? { ...assignment, completed }
                 : assignment
         ));
+
+        if (completed && timers[id]) {
+            try {
+                await postTime(id, timers[id]);
+            } catch (error) {
+                console.error('Error posting time:', error);
+            }
+        }
     };
+
+    const postTime = async (id, time) => {
+        const assignment = assignments.find(a => a.id === id);
+
+        try {
+            await axios.post('http://localhost:8000/api/get_time', {
+                google_id: JSON.parse(localStorage.getItem('user'))?.user_id,
+                accure: time
+            });
+        } catch (error) {
+            console.error('Error posting time:', error);
+        }
+    };
+
+
 
     const handleAddAssignment = () => {
         const newAssignment = {

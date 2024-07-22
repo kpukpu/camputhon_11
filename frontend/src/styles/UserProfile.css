@@ -101,6 +101,7 @@
 
 .progress-bar-container {
     position: relative;
+
 }
 
 .progress-text {
@@ -242,4 +243,11 @@
 
 .point {
     margin-top: 1.5rem;
+}
+
+.screenshot-mode-button {
+    z-index: 20;
+    margin-top: 1rem;
+
+
 }

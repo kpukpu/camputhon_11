@@ -22,6 +22,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
     const [showBannerModal, setShowBannerModal] = useState(false);
     const [tempProfileImage, setTempProfileImage] = useState(null);
     const [currentTitle, setCurrentTitle] = useState(title);
+    const [screenshotMode, setScreenshotMode] = useState(false);
     const { silverPoint, goldPoint } = user;
 
     // 임시 칭호 리스트
@@ -45,7 +46,6 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                 return bronzeTierImage;
         }
     };
-
 
     const tierImage = getTierImage(nextTier);
 
@@ -75,6 +75,10 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
 
     const handleBannerSelect = (bannerUrl) => {
         setTempProfileImage(bannerUrl);
+    };
+
+    const toggleScreenshotMode = () => {
+        setScreenshotMode(!screenshotMode);
     };
 
     return (
@@ -112,9 +116,11 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
             </div>
             <div className="profile-progress">
                 <div className="edit-profile-container">
-                    <button className="edit-profile-button" onClick={toggleEditing}>
-                        {isEditing ? '저장하기' : '프로필 편집하기'}
-                    </button>
+                    {!screenshotMode && (
+                        <button className="edit-profile-button" onClick={toggleEditing}>
+                            {isEditing ? '저장하기' : '프로필 편집하기'}
+                        </button>
+                    )}
                 </div>
                 <div className="tier-info">
                     <span className="current-tier">현재 티어: {tier}</span>
@@ -123,10 +129,16 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
                 <div className="progress-bar-container">
                     <Progress value={progressPercentage}/>
                     <span className="progress-text">{currentPoints} / {levelUpPoints}</span>
+
                 </div>
             </div>
+            {!screenshotMode && (
+                <button className="screenshot-mode-button" onClick={toggleScreenshotMode}>
+                    스크린샷 모드
+                </button>
+            )}
             <p className="point">
-                <MyPoint silverPoint={silverPoint} goldPoint={goldPoint}/>
+                <MyPoint silverPoint={silverPoint}/>
             </p>
             {showProfilePictureModal && (
                 <ProfilePictureModal
