@@ -4,9 +4,7 @@ from todolist.models import what_to_do
 from login.models import GoogleUser
 
 class TaskTime(models.Model):
-    task = models.ForeignKey(what_to_do, on_delete=models.CASCADE, related_name='times')
-    currentPoints = models.ForeignKey(GoogleUser, on_delete=models.CASCADE, related_name='sipal', null=True, blank=True)
-    silverPoint = models.ForeignKey(GoogleUser, on_delete=models.CASCADE, related_name='hahahaha', null=True, blank=True)
-    major = models.ForeignKey(what_to_do, on_delete=models.CASCADE, null = True)
-    start_time = models.DateTimeField(null=True, blank=True)
-    total_time = models.DateTimeField(null=True, blank=True)
+    task = models.ForeignKey(what_to_do, on_delete=models.CASCADE, related_name='SIPAL')
+    google_id = models.ForeignKey(GoogleUser, on_delete=models.CASCADE, related_name='SIIPAL')
+    currentPoints = models.ForeignKey(GoogleUser, on_delete=models.CASCADE, related_name='sipDSFal', null=True, blank=True)
+    silverPoint = models.ForeignKey(GoogleUser, on_delete=models.CASCADE, related_name='hahahaSDFDSha', null=True, blank=True)
