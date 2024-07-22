@@ -15,7 +15,8 @@ const MyPage = () => {
         levelUpPoints: "",
         week_score: "",
         banner: "",
-        nextTier: ""
+        nextTier: "",
+        silverPoint: ""
     });
     const [banners, setBanners] = useState([]);
     const [showBannerModal, setShowBannerModal] = useState(false);

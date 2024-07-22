@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Shop.css';
 import ShopModal from '../modal/ShopModal';
+import {apiGet} from "../app/api/GET";
 
 const Product = ({ product, onClick }) => {
     return (
@@ -31,9 +32,19 @@ const ProductList = ({ products, onProductClick }) => {
 const Shop = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [balance, setBalance] = useState(1000);
+    const [balance, setBalance] = useState(0);
 
     useEffect(() => {
+        const fetchUserInfo = async () => {
+            const userId = JSON.parse(localStorage.getItem('user'))?.user_id;
+            if (userId) {
+                const userResponse = await apiGet('userInfo', userId);
+                setBalance(userResponse.silverPoint || 0); // Set balance from response
+            }
+        };
+
+        fetchUserInfo();
+
         // Fetch product data from the API
         const fetchProducts = async () => {
             try {

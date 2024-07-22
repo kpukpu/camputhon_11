@@ -19,4 +19,4 @@ class banner_info(serializers.ModelSerializer):
 class mypage_info(serializers.ModelSerializer):
     class Meta:
         model = GoogleUser
-        fields = ['user', 'google_id', 'avatar', 'nickname', 'title', 'currentPoints','tier' ,'levelUpPoints', 'week_score', 'banner', 'nextTier', 'levelUpPoints']
+        fields = ['user', 'google_id', 'avatar', 'nickname', 'title', 'currentPoints','tier' ,'levelUpPoints', 'week_score', 'banner', 'nextTier', 'levelUpPoints', 'silverPoint']

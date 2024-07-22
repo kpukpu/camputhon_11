@@ -138,7 +138,7 @@ const TaskEditing = () => {
         const assignment = assignments.find(a => a.id === id);
 
         try {
-            await axios.post('http://localhost:8000/api/get_time', {
+            await axios.post('http://localhost:8000/api/get_time/', {
                 google_id: JSON.parse(localStorage.getItem('user'))?.user_id,
                 accure: time
             });

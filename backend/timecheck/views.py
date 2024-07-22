@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 import json
 '''
-def start_task(request, task_id):
+#def start_task(request, task_id):
     _start_time = time.time()
     task_time = get_object_or_404(TaskTime, id=task_id)
     task_time.start_time = _start_time

@@ -14,7 +14,7 @@ import BannerModal from '../modal/BannerModal';
 import MyPoint from '../components/MyPoint';
 
 const UserProfile = ({ user, isEditing, setIsEditing }) => {
-    const { nickname, week_score, tier, nextTier, currentPoints, levelUpPoints, google_id, avatar, title } = user;
+    const { nickname, week_score, tier, nextTier, currentPoints, levelUpPoints, google_id, avatar, title} = user;
     const progressPercentage = (currentPoints / levelUpPoints) * 100;
 
     const [showProfilePictureModal, setShowProfilePictureModal] = useState(false);
@@ -23,7 +23,7 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
     const [tempProfileImage, setTempProfileImage] = useState(null);
     const [currentTitle, setCurrentTitle] = useState(title);
     const [screenshotMode, setScreenshotMode] = useState(false);
-    const { silverPoint, goldPoint } = user;
+    const { silverPoint } = user;
 
     // 임시 칭호 리스트
     const titleList = ['초보 개발자', '중급 개발자', '고급 개발자', '마스터 개발자'];

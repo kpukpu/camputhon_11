@@ -21,7 +21,7 @@ class GoogleUser(models.Model):
     tier = models.CharField(max_length=30, choices=TIER_CHOICES, default = 'stone')
     nextTier = models.CharField(max_length=20, blank = True, default = 'Silver') # next tier
     levelUpPoints = models.IntegerField(default = 100)
-    #silverPoint = models.IntegerField(default = 0)
+    silverPoint = models.IntegerField(default = 0)
 
 class Banner(models.Model):
     name = models.CharField(max_length=255)
