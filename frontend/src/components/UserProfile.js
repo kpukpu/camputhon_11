@@ -33,15 +33,15 @@ const UserProfile = ({ user, isEditing, setIsEditing }) => {
             case 'bronze':
                 return bronzeTierImage;
             case 'silver':
-                return silverTierImage;
+                return bronzeTierImage;
             case 'gold':
-                return goldTierImage;
+                return silverTierImage;
             case 'emerald':
-                return emeraldTierImage;
+                return goldTierImage;
             case 'diamond':
-                return diamondTierImage;
+                return emeraldTierImage;
             case 'ruby':
-                return rubyTierImage;
+                return diamondTierImage;
             default:
                 return bronzeTierImage;
         }
