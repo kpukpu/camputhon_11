@@ -27,12 +27,6 @@ const Footer = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/calendar" className={`footer-nav-link ${isActive('/calendar') ? 'active' : ''}`}>
-                            <Calendar size={24}/>
-                            <span>Calendar</span>
-                        </Link>
-                    </li>
-                    <li>
                         <Link to="/task" className={`footer-nav-link ${isActive('/task') ? 'active' : ''}`}>
                             <CheckSquare size={24}/>
                             <span>Task</span>

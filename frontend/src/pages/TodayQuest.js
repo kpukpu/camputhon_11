@@ -3,7 +3,7 @@ import '../styles/TaskEditing.css';
 
 const TodayQuest = () => {
     const [exampleTask, setExampleTask] = useState({
-        Task: 'Example Task',
+        Task: '백준 7576 문제 풀기',
         completed: false
     });
 
