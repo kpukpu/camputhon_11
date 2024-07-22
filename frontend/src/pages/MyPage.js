@@ -76,6 +76,14 @@ const MyPage = () => {
                         </button>
                     )}
                 </div>
+                <div className="profile-info">
+                    <img src={user.avatar} alt="User Avatar" className="profile-avatar" />
+                    <div className="profile-details">
+                        <h2 className="nickname">{user.nickname}</h2>
+                        <p className="title">{user.title}</p>
+                        <p className="week-score">주간 점수: {user.week_score}</p>
+                    </div>
+                </div>
                 <UserProfile user={user} isEditing={isEditing} setIsEditing={setIsEditing} className="user-profile"/>
             </main>
             {showBannerModal && (
